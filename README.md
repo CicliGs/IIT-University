@@ -1,2 +1,2 @@
 # IIT-University
-This is a backend for the IIT department of BSTU
+This is a frontend for the IIT department of BSTU

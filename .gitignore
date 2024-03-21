@@ -1,4 +1,4 @@
 
-*.zip
 /node_modules
-/.vite
+*.zip
+src/trash

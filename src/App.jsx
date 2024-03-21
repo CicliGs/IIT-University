@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import { Context } from "./main"
 import Home from "./pages/Home"

@@ -1,16 +1,46 @@
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import { Context } from "../../main";
 import "./Login.css";
 
-export default function Login() {
+const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { store } = useContext(Context);
+  const navigate = useNavigate();
+
+  useEffect(() => {}, []);
+
   return (
     <>
       <div className="Login">
-        <form className="form-log">
+        <div className="form-log">
           <h1>Войти</h1>
-          <input name="login" type="text" placeholder="Введите логин" />
-          <input name="password" type="password" placeholder="Введите пароль" />
-          <button type="submit">Войти</button>
-        </form>
+          <input
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            type="text"
+            placeholder="Введите логин"
+          />
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            type="password"
+            placeholder="Введите пароль"
+          />
+          <button
+            onClick={() => {
+              store.login(username, password);
+            }}
+          >
+            Войти
+          </button>
+        </div>
       </div>
     </>
   );
-}
+};
+
+export default observer(Login);

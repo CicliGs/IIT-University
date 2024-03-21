@@ -1,0 +1,49 @@
+/* Общие стили для регистрации */
+.Login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #2c3e50, #2d7aad);
+}
+
+.form-log {
+  width: 320px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-log h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.form-log input {
+  width: calc(100% - 30px);
+  padding: 15px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ecf0f1;
+  border: 1px solid gray;
+  border-bottom: 2px solid gray;
+}
+
+.form-log button {
+  width: 100%;
+  padding: 15px;
+  font-size: 17px;
+  background-color: #225475; /* Пастельный зеленый цвет кнопки */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-log button:hover {
+  background-color: #4f8b3a;  /*Более темный оттенок зеленого при наведении */
+}

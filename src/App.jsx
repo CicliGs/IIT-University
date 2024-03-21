@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import { Context } from "./main"
 import Home from "./pages/Home"
@@ -10,6 +10,7 @@ import ScheduleFEIS from "./pages/Schedule/ScheduleFEIS"
 import Labs from "./pages/Labs"
 import Materials from "./pages/Materials"
 import Exam from "./pages/Exam"
+import Teachers from "./pages/Teachers"
 
 export default function App() {
   const {store} = useContext(Context)
@@ -26,7 +27,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path='/' element={<PublicElement> <Home /> </PublicElement>} />
-          <Route path='/news' element={<News />} />
+          <Route path='/news' element={<PublicElement> <News /> </PublicElement>} />
           <Route path='/schedule-feis' element={<ScheduleFEIS/>}/>
           <Route path='/schedule' element={<IITSchedule />}/>
           <Route path='/labs' element={<Labs />} />
@@ -34,6 +35,7 @@ export default function App() {
           <Route path='/exam' element={<Exam />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Registration />} />
+          <Route path='/teachers' element={< Teachers/>} />
         </Routes>
       </main>
     </>
@@ -46,8 +48,6 @@ const USER_TYPES = {
   TEACHER: 'Teacher',
   ADMIN: 'Admin'
 }
-
-const CURRENT_USER_TYPE = USER_TYPES.PUBLIC
 
 function PublicElement({ children }){
   return <>{children}</>

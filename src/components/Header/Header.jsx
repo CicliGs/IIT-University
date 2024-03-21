@@ -76,7 +76,7 @@ const Header = () => {
               </div> 
             )} 
           </li>  
-          <li className={styles.nav__item}><Link to="/" className={styles.link}>Преподавателям</Link></li>  
+          <li className={styles.nav__item}><Link to="/teachers" className={styles.link}>Преподавателям</Link></li>  
         </ul>  
 
 

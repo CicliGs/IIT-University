@@ -1,0 +1,7 @@
+.rrphotos{
+    display: flex;
+    justify-content: center;
+  }
+  .carousel-indicators{
+    height: 0px;
+  }

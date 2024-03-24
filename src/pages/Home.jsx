@@ -7,40 +7,40 @@ import Login from "./Login/Login";
 import "./Home.css";
 
 const Home = () => {
-  const { store } = useContext(Context);
+  // const { store } = useContext(Context);
 
-  useEffect(() => {
-    if (localStorage.getItem("access_token")) {
-      store.checkAuth();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("access_token")) {
+  //     store.checkAuth();
+  //   }
+  // }, []);
 
-  if (store.isLoading) {
-    console.log("is loading", store.isLoading);
-    return <h1>Загрузка ...</h1>;
-  }
-  if (!store.isAuth) {
-    return <Login />;
-  }
+  // if (store.isLoading) {
+  //   console.log("is loading", store.isLoading);
+  //   return <h1>Загрузка ...</h1>;
+  // }
+  // if (!store.isAuth) {
+  //   return <Login />;
+  // }
 
   return (
     <>
       <Header />
-      <h1>
+      {/* <h1>
         {store.isAuth
           ? `Пользователь авторизован  ${store.user.username}`
           : "Пользователь не авторизован"}
-      </h1>
-      {store.isAuth === true ? (
+      </h1> */}
+      {/* {store.isAuth === true ? ( */}
         <Link to="/login" className="link">
-          Выйти
+          {/* Выйти */}
         </Link>
-      ) : (
+      {/* ) : ( */}
         <Link to="/login" className="link">
-          Войти
+          {/* Войти */}
         </Link>
-      )}
-      <Link>{store.isAuth ? "Выйти" : "Войти"}</Link>
+      {/* )} */}
+      {/* <Link>{store.isAuth ? "Выйти" : "Войти"}</Link> */}
     </>
   );
 };

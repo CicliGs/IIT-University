@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { Context } from "../main";
 import Header from "../components/Header/Header";
-import Login from "./Login/Login";
 import "./Home.css";
 
+//Оптимизация - использовать динамический импорт в react
+//const Template = lazy(() => import("./template/Template.tsx"))
 const Home = () => {
   const { store } = useContext(Context);
 
@@ -18,9 +19,6 @@ const Home = () => {
   if (store.isLoading) {
     console.log("is loading", store.isLoading);
     return <h1>Загрузка ...</h1>;
-  }
-  if (!store.isAuth) {
-    return <Login />;
   }
 
   return (

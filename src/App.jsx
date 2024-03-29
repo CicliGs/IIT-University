@@ -11,10 +11,14 @@ import Labs from "./pages/Labs"
 import Materials from "./pages/Materials"
 import Exam from "./pages/Exam"
 import Teachers from "./pages/Teachers"
+import UserRoute from "./utils/router/userRoute"
+import TeacherRoute from "./utils/router/teacherRoute"
+import AdminRoute from "./utils/router/adminRoute"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
   const {store} = useContext(Context)
-
+  
   useEffect(() => {
     if(localStorage.getItem('token')){
       store.checkAuth()
@@ -26,51 +30,28 @@ export default function App() {
       {/*<Header />*/}
       <main>
         <Routes>
-          <Route path='/' element={<PublicElement> <Home /> </PublicElement>} />
-          <Route path='/news' element={<PublicElement> <News /> </PublicElement>} />
+          <Route path='/' element={<Home />} />
+          <Route path='/news' element={<News />} />
           <Route path='/schedule-feis' element={<ScheduleFEIS/>}/>
           <Route path='/schedule' element={<IITSchedule />}/>
-          <Route path='/labs' element={<Labs />} />
-          <Route path='/materials' element={<Materials />} />
-          <Route path='/exam' element={<Exam />} />
+          
+          <Route element={<UserRoute />}>
+            <Route path='/labs' element={<Labs />} />
+            <Route path='/materials' element={<Materials />} />
+            <Route path='/exam' element={<Exam />} />
+          </Route>
+
+          <Route element={<TeacherRoute />}>
+            <Route path='/teachers' element={< Teachers/>} />
+          </Route>
+
+          <Route element={<AdminRoute />}>
+            <Route path='/register' element={<Registration />} />
+          </Route>
+
           <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Registration />} />
-          <Route path='/teachers' element={< Teachers/>} />
         </Routes>
       </main>
     </>
   )
 }
-
-const USER_TYPES = {
-  PUBLIC: 'Public user',
-  USER: 'Normal user',
-  TEACHER: 'Teacher',
-  ADMIN: 'Admin'
-}
-
-function PublicElement({ children }){
-  return <>{children}</>
-}
-function UserElement({ children }){
-  if(CURRENT_USER_TYPE === USER_TYPES.USER || CURRENT_USER_TYPE === USER_TYPES.TEACHER || CURRENT_USER_TYPE === USER_TYPES.ADMIN){
-    return <>{ children }</>
-  }else{
-    return <h1>У вас нет доступа к этой странице</h1>
-  }
-}
-function TeacherElement({ children }){
-  if(CURRENT_USER_TYPE === USER_TYPES.TEACHER || CURRENT_USER_TYPE === USER_TYPES.ADMIN){
-    return <>{ children }</>
-  }else{
-    return <h1>У вас нет доступа к этой странице</h1>
-  }
-}
-function AdminElement({ children }){
-  if(CURRENT_USER_TYPE === USER_TYPES.ADMIN){
-    return <>{ children }</>
-  }else{
-    return <h1>У вас нет доступа к этой странице</h1>
-  }
-}
-

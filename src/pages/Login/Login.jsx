@@ -33,6 +33,7 @@ const Login = () => {
           <button
             onClick={() => {
               store.login(username, password);
+              navigate("/")
             }}
           >
             Войти

@@ -86,10 +86,10 @@ const Header = () => {
             onMouseEnter={handleProfileMouseEnter} 
             onMouseLeave={handleProfileMouseLeave} >
             
-            <div className={styles.link}>{store.isAuth ? `${store.user.username}` : "Войти"}</div>
+            <div className={styles.link}>{store.isAuth ? `${store.user.username}` : <Link to="/login" className={styles.link}>Войти</Link>}</div>
             {isProfileHovered && store.isAuth ? <div className={styles.dropdown}>
               <ul>
-                <li><Link to="/" onClick={store.logout()} className={styles.dropdown__link}>Выйти</Link></li>
+                <li><Link to="/" onClick={() => {store.logout()}} className={styles.dropdown__link}>Выйти</Link></li>
               </ul>
             </div> : <div></div>}
           </li>

@@ -6,10 +6,12 @@ import logo from "/vite.svg";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../main";
 import api from "../../http";
+import PDFViewer from "../../components/PDFViewer";
 
 const IITSchedule = () => {
   const [drag, setDrag] = useState(false);
   const { store } = useContext(Context);
+  const [view, setView] = useState(false);
 
   const docs = [{ url: "http://localhost:8080/api/v1/schedule/pdf/iit" }];
 
@@ -68,7 +70,7 @@ const IITSchedule = () => {
         >
           Загрузить расписание кафедры .xlsx
         </button>
-        <button className={styles.button89}>Предпросмотр расписания</button>
+        <button className={styles.button89} onClick={() => {setView(!view)}}>Предпросмотр расписания</button>
       </div>
 
       {store.user.role === "ADMIN" ? (
@@ -95,9 +97,13 @@ const IITSchedule = () => {
           )}
         </div>
       ) : (
-        <h1>Not ADMIN</h1>
+        <></>
       )}
 
+      <div className={styles.pdfViewer}>
+        {view && <PDFViewer fileUrl="http://localhost:8080/api/v1/schedule/pdf/iit"/>}
+      </div>
+      
       {/*store.user.role === "ADMIN" ? <h1>admin</h1> : <h1>not admin</h1>*/}
     </>
   );

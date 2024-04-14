@@ -52,6 +52,12 @@
   padding: 100px;
 }
 
+.pdfViewer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* h2{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

@@ -1,12 +1,10 @@
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { Context } from "../main";
 import Header from "../components/Header/Header";
+import ParticlesBg from "./ParticlesBg";
 import "./Home.css";
 
-//Оптимизация - использовать динамический импорт в react
-//const Template = lazy(() => import("./template/Template.tsx"))
 const Home = () => {
   const { store } = useContext(Context);
 
@@ -24,23 +22,70 @@ const Home = () => {
   return (
     <>
       <Header />
-      <h1>
-        {store.isAuth
-          ? `Пользователь авторизован  ${store.user.username}`
-          : "Пользователь не авторизован"}
-      </h1>
-      {store.isAuth === true ? (
-        <Link to="/login" className="link">
-          Выйти
-        </Link>
-      ) : (
-        <Link to="/login" className="link">
-          Войти
-        </Link>
-      )}
-      <Link>{store.isAuth ? "Выйти" : "Войти"}</Link>
+      <ParticlesBg />
+      <div className="content">
+        <div className="content-text">
+          <h1>
+            К<span>афедра</span>
+          </h1>
+          <h1>
+            И<span>нтеллектуальных</span>
+          </h1>
+          <h1>
+            И<span>нформационных</span>
+          </h1>
+          <h1>
+            Т<span>ехнологий</span>
+          </h1>
+        </div>
+      </div>
+      <div className="show-content">
+        <div className="cont">
+
+        <div className="department-info">
+          <div className="image-depart">
+          <img src="../public/comp&books.png" alt="" />
+          </div>
+          <div className="text-depart">
+          <h3>Кафедра интеллектуальных информационных технологий</h3>
+          <p>
+            Кафедра интеллектуальных информационных технологий (КИИТ) — это ведущее подразделение нашего университета,<br></br> специализирующееся на передовых исследованиях и образовательных программах в области информационных технологий.
+          </p>
+          </div>
+        </div>
+        <div className="research-areas">
+        <div className="text-res">
+          <div className="res-list">
+          <h3>Направления исследований</h3>
+          <ul>
+            <li>Искусственный интеллект</li>
+            <li>Программное обеспечение</li>
+            <li>Вычислительные машины</li>
+            <li>Автоматизированные системы</li>
+            <li>Мобильные системы</li>
+            <li>Промышленная электроника</li>
+          </ul>
+          </div>
+          </div>
+        <div className="image-research">
+          <img src="../public/language.png" alt="" />
+          </div>
+        </div>
+        <div className="achievements">
+        <div className="image-achievements">
+          <img src="../public/code.png" alt="" />
+          </div>
+          <div className="text-achievements">
+          <h3>Достижения кафедры</h3>
+          <p>
+            Кафедра интеллектуальных информационных технологий активно участвует в международных научных конференциях,<br></br> разработке инновационных проектов и публикации статей в ведущих журналах.
+          </p>
+          </div>
+        </div>
+        </div>
+      </div>
     </>
   );
 };
 
-export default observer(Home); //Чтобы mobx мог отслеживать изменение данных
+export default observer(Home);

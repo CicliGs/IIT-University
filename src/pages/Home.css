@@ -1,6 +1,102 @@
-/*.container {
-	margin: 0 auto;
-	padding: 0 15px;
-	max-width: 1200px;
-}*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	z-index: 1;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	scrollbar-color: #ffffff rgb(39, 39, 39);
+}
 
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: #ffffff;
+	/* белый цвет текста */
+	text-align: center;
+	height: 95vh;
+}
+
+.content-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: left;
+}
+
+.content-text span {
+	color: #ffffff;
+	/* белый цвет текста */
+	font-size: 32px;
+}
+
+.content h1 {
+	font-size: 75px;
+}
+
+.show-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* background: #c9c9c9; */
+	border-radius: 5px;
+}
+
+.department-info,
+.research-areas,
+.achievements {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	padding: 20px;
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.3);
+	/* background-color: #c9c9c933; */
+	backdrop-filter: blur(0.5rem);
+}
+
+.image-depart img,
+.image-research img,
+.image-achievements img{
+	max-width: 300px;
+	max-height: 300px;
+}
+
+.image-depart,
+.image-research,
+.image-achievements {
+	flex: 0 0 30%;
+}
+
+.text-depart,
+.text-res,
+.text-achievements {
+	color: #e4e1e1;
+	flex: 1;
+	/* Оставшееся пространство для текста */
+	padding-left: 20px;
+	/* Отступ слева */
+}
+
+
+.department-info p,
+.achievements p {
+	padding-top: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.res-list{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;	
+}
+
+
+.research-areas ul li {
+	list-style-type: disc;
+}

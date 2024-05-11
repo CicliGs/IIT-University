@@ -8,11 +8,13 @@ import styles from "./Header.module.css";
 
 const Header = () => { 
   const [isActive, setIsActive] = useState(false)
-  const [isSheduleHovered, setIsSheduleHovered] = useState(false)
+  const [isScheduleHovered, setIsScheduleHovered] = useState(false)
   const [isStudentHovered, setIsStudentHovered] = useState(false)
   const [isTeacherHovered, setIsTeacherHovered] = useState(false)
+  const [isAdminHovered, setIsAdminHovered] = useState(false)
   const [isProfileHovered, setIsProfileHovered] = useState(false)
   const {store} = useContext(Context)
+  const role = store.user.role
  
   const handleStudentMouseEnter = () => { 
     setIsStudentHovered(true)
@@ -30,10 +32,16 @@ const Header = () => {
     setIsProfileHovered(false)
   }
   const handleScheduleMouseEnter = () => {
-    setIsSheduleHovered(true)
+    setIsScheduleHovered(true)
   }
   const handleScheduleMouseLeave = () => {
-    setIsSheduleHovered(false)
+    setIsScheduleHovered(false)
+  }
+  const handleAdminMouseEnter = () => {
+    setIsAdminHovered(true)
+  }
+  const handleAdminMouseLeave = () => {
+    setIsAdminHovered(false)
   }
  
   return ( 
@@ -51,7 +59,7 @@ const Header = () => {
             onMouseLeave={handleScheduleMouseLeave}
           >
             <div className={styles.link}>Расписание</div>
-            {isSheduleHovered && (
+            {isScheduleHovered && (
               <div className={styles.dropdown}>
                 <ul>
                   <li><Link to="/schedule" className={styles.dropdown__link}>Расписание кафедры</Link></li>
@@ -59,7 +67,8 @@ const Header = () => {
                 </ul>
               </div>
             )}
-          </li> 
+          </li>
+          { role === "USER" || role === "TEACHER" || role === "ADMIN" ? (          
           <li 
             className={`${styles.nav__item} ${isStudentHovered && styles.nav__item_active}`} 
             onMouseEnter={handleStudentMouseEnter} 
@@ -75,9 +84,28 @@ const Header = () => {
                 </ul> 
               </div> 
             )} 
-          </li>  
-          <li className={styles.nav__item}><Link to="/teachers" className={styles.link}>Преподавателям</Link></li>
-          <li className={styles.nav__item}><Link to="/admin" className={styles.link}>ADMIN</Link></li>
+          </li> ) : <></>}
+ 
+          {role === "TEACHER" || role === "ADMIN" ? (
+            <li className={styles.nav__item}><Link to="/teachers" className={styles.link}>Преподавателям</Link></li>
+          ) : <></>}
+          
+          {role === "ADMIN" ? (          
+          <li
+            className={styles.nav__item}
+            onMouseEnter={handleAdminMouseEnter}
+            onMouseLeave={handleAdminMouseLeave}
+          >
+            <Link to="/admin" className={styles.link}>ADMIN</Link>
+            {isAdminHovered && (
+              <div className={styles.dropdown}>
+                <ul>
+                  <li><Link to="/register" className={styles.dropdown__link}>Регистрация</Link></li>
+                </ul>
+              </div>
+            )}
+          </li>) : <></>}
+
         </ul>  
 
 
@@ -90,6 +118,7 @@ const Header = () => {
             <div className={styles.link}>{store.isAuth ? `${store.user.username}` : <Link to="/login" className={styles.link}>Войти</Link>}</div>
             {isProfileHovered && store.isAuth ? <div className={styles.dropdown}>
               <ul>
+                <li><Link to="/profile" className={styles.dropdown__link}>Профиль</Link></li>
                 <li><Link to="/" onClick={() => {store.logout()}} className={styles.dropdown__link}>Выйти</Link></li>
               </ul>
             </div> : <div></div>}

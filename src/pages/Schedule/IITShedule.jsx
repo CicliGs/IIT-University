@@ -9,18 +9,16 @@ import api from "../../http";
 import PDFViewer from "../../components/PDFViewer";
 
 const IITSchedule = () => {
-  const [drag, setDrag] = useState(false);
   const { store } = useContext(Context);
+  const [drag, setDrag] = useState(false);
   const [view, setView] = useState(false);
 
-  const docs = [{ url: "http://localhost:8080/api/v1/schedule/pdf/iit" }];
-
   const downloadSchedule = async () => {
-    const fileName = "http://localhost:8080/api/v1/schedule/iit"
+    const fileName = "http://localhost:8080/api/v1/schedule/pdf/iit"
       .split("/")
       .pop();
     const aTag = document.createElement("a");
-    aTag.href = "http://localhost:8080/api/v1/schedule/iit";
+    aTag.href = "http://localhost:8080/api/v1/schedule/pdf/iit";
     aTag.setAttribute("download", fileName);
     document.body.appendChild(aTag);
     aTag.click();
@@ -44,7 +42,8 @@ const IITSchedule = () => {
 
     const formData = new FormData();
     formData.append("file", files[0]);
-    axios.post("http://localhost:8080/api/v1/admin/schedule", formData);
+    formData.append("typeSchedule", "iit")
+    api.post("http://localhost:8080/api/v1/admin/schedule", formData);
 
     setDrag(false);
   }
@@ -59,7 +58,7 @@ const IITSchedule = () => {
         </Link>
         <div className={styles.headText}>
           <h2 className={styles.Title}>
-            Кафедра Интелектуальных информационных технологий
+            Кафедра Интеллектуальных информационных технологий
           </h2>
         </div>
       </div>

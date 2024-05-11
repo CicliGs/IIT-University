@@ -11,9 +11,9 @@ const Home = () => {
   const { store } = useContext(Context);
 
   useEffect(() => {
-    if (localStorage.getItem("access_token")) {
+    /*if (localStorage.getItem("access_token")) {
       store.checkAuth();
-    }
+    }*/
   }, []);
 
   if (store.isLoading) {

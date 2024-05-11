@@ -14,8 +14,10 @@ import Exam from "./pages/Exam"
 import Teachers from "./pages/Teachers"
 import UserRoute from "./utils/router/userRoute"
 import TeacherRoute from "./utils/router/teacherRoute"
+import Profile from "./pages/Profile"
 import AdminRoute from "./utils/router/adminRoute"
 import Admin from "./pages/Admin"
+import Video from "./pages/Video"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
@@ -36,11 +38,13 @@ export default function App() {
           <Route path='/news' element={<News />} />
           <Route path='/schedule-feis' element={<ScheduleFEIS/>}/>
           <Route path='/schedule' element={<IITSchedule />}/>
+          <Route path='/video' element={<Video />}/>
           
           <Route element={<UserRoute />}>
             <Route path='/labs' element={<Labs />} />
             <Route path='/materials' element={<Materials />} />
             <Route path='/exam' element={<Exam />} />
+            <Route path='/profile' element={<Profile />} />
           </Route>
 
           <Route element={<TeacherRoute />}>

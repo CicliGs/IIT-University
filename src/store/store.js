@@ -60,10 +60,14 @@ export default class Store{
     }
 
     async logout(){
-        localStorage.removeItem('access_token')
-        localStorage.removeItem('refresh_token')
-        localStorage.removeItem('username')
-        localStorage.removeItem('role')
+        AuthService.logout()
+        setTimeout(() => {
+            localStorage.removeItem('access_token')
+            localStorage.removeItem('refresh_token')
+            localStorage.removeItem('username')
+            localStorage.removeItem('role')
+        }, 1000)
         this.setAuth(false)
+        this.setUser({})
     }
 }

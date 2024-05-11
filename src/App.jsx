@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import { Context } from "./main"
-import Home from "./pages/Home"
+import Home from "./pages/Home/Home"
 import Login from "./pages/Login/Login"
 import Registration from "./pages/Registration/Registration"
 import News from "./pages/News/News"

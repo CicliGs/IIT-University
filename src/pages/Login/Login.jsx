@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../main";
 import "./Login.css";
-import waveTop from "../../../public/wave-top.png";
-import waveMiddle from "../../../public/wave-mid.png";
-import waveBottom from "../../../public/wave-bot.png";
+import waveTop from "/wave-top.png";
+import waveMiddle from "/wave-mid.png";
+import waveBottom from "/wave-bot.png";
 
 const Login = () => {
   const [username, setUsername] = useState("");

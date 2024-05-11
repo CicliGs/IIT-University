@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom"; 
 import { observer } from "mobx-react-lite";
 import { Context } from "../../main";
-import logo from "../../../public/logo.png"; 
+import logo from "/logo.png"; 
 import styles from "./Header.module.css"; 
 
 const Header = () => { 
@@ -142,7 +142,6 @@ const Header = () => {
         </ul> 
       </nav> 
     </header> 
-              // {/* </div>  */}
   ); 
 }
 

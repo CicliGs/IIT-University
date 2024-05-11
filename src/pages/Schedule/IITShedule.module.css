@@ -1,7 +1,16 @@
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height:93vh;
+  background: rgb(39, 39, 39);  
+  padding-bottom: 250px;
+}
+
 .Title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     /*padding-top: 30px;*/
 }
 
@@ -20,7 +29,6 @@
 }
 
 .headText{
-    padding-right: 15%; /*говнокод*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,7 +82,7 @@ button{
 .button89 {
   --b: 3px;   /* border thickness */
   --s: .45em; /* size of the corner */
-  --color: #373B44;
+  --color: #fff;
   
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
   color: var(--color);

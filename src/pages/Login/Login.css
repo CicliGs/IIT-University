@@ -4,7 +4,94 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to bottom right, #2c3e50, #2d7aad);
+  /* background: linear-gradient(149deg, rgb(75, 77, 82) 0%, rgb(63, 64, 68) 42%, rgb(124, 128, 134) 72%, rgb(151, 152, 155) 100%); */
+  animation: gradient 20s infinite linear;
+  /* 10s - скорость анимации */
+  background-size: 400%;
+  /* Можно менять и подбирать интенсивность */
+}
+
+@keyframes move_wave {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1)
+  }
+
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.55)
+  }
+
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1)
+  }
+}
+
+.waveWrapper {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+}
+
+.waveWrapperInner {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  background-image: linear-gradient(to top, #4e4e4e 20%, #212124 80%);
+}
+
+.bgTop {
+  z-index: 15;
+  opacity: 0.5;
+}
+
+.bgMiddle {
+  z-index: 10;
+  opacity: 0.75;
+}
+
+.bgBottom {
+  z-index: 5;
+}
+
+.wave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat no-repeat;
+  background-position: 0 bottom;
+  transform-origin: center bottom;
+}
+
+.waveTop {
+  background-size: 50% 100px;
+}
+
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+  -webkit-animation: move-wave 3s;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.waveMiddle {
+  background-size: 50% 120px;
+}
+
+.waveAnimation .waveMiddle {
+  animation: move_wave 10s linear infinite;
+}
+
+.waveBottom {
+  background-size: 50% 100px;
+}
+
+.waveAnimation .waveBottom {
+  animation: move_wave 15s linear infinite;
 }
 
 .form-log {
@@ -16,6 +103,7 @@
 }
 
 .form-log h1 {
+  color: black;
   text-align: center;
   font-size: 28px;
   margin-bottom: 30px;
@@ -28,6 +116,7 @@
   border: none;
   border-radius: 5px;
   background-color: #ecf0f1;
+  color: black;
   border: 1px solid gray;
   border-bottom: 2px solid gray;
 }
@@ -36,7 +125,7 @@
   width: 100%;
   padding: 15px;
   font-size: 17px;
-  background-color: #225475; /* Пастельный зеленый цвет кнопки */
+  background-color: #4e5961;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -45,5 +134,6 @@
 }
 
 .form-log button:hover {
-  background-color: #4f8b3a;  /*Более темный оттенок зеленого при наведении */
+  background-color: #313131;
+  /*Более темный оттенок зеленого при наведении */
 }

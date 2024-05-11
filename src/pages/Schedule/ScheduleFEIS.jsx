@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./ScheduleFEIS.module.css";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
+import Header from "../../components/Header/Header";
 
 const ScheduleFEIS = () => {
   const [course, setCourse] = useState(0);
@@ -33,13 +34,15 @@ const ScheduleFEIS = () => {
 
   return (
     <>
+          <Header />
+    <div className={styles.container}>
       <div className={styles.headDiv}>
         <h2 className={styles.tytle}>Расписание ФЭИС</h2>
       </div>
 
       <div className={styles.button}>
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+          <Dropdown.Toggle variant="secondary" id="dropdown-basic">
             Выберите курс
           </Dropdown.Toggle>
 
@@ -82,6 +85,7 @@ const ScheduleFEIS = () => {
           <></>
         )}
       </div>
+        </div>
     </>
   );
 };

@@ -1,10 +1,9 @@
-import { useState, useContext } from "react"; 
+import { useState, useEffect, useContext } from "react"; 
 import { Link } from "react-router-dom"; 
 import { observer } from "mobx-react-lite";
 import { Context } from "../../main";
-import logo from "/vite.svg"; 
+import logo from "../../../public/logo.png"; 
 import styles from "./Header.module.css"; 
-
 
 const Header = () => { 
   const [isActive, setIsActive] = useState(false)
@@ -13,9 +12,25 @@ const Header = () => {
   const [isTeacherHovered, setIsTeacherHovered] = useState(false)
   const [isAdminHovered, setIsAdminHovered] = useState(false)
   const [isProfileHovered, setIsProfileHovered] = useState(false)
+  const [isTransparent, setIsTransparent] = useState(true);
   const {store} = useContext(Context)
   const role = store.user.role
  
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setIsTransparent(false);
+    } else {
+      setIsTransparent(true);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleStudentMouseEnter = () => { 
     setIsStudentHovered(true)
   }
@@ -45,7 +60,8 @@ const Header = () => {
   }
  
   return ( 
-    <header> 
+      // <div className={styles.fixed_nav}>
+    <header className={`${styles.nav} ${isTransparent ? styles.transparent : styles.bgDark}`}>
       <nav className={styles.nav}>  
         <div className={styles.nav__brand}>  
           <img src={logo} alt="Result" />  
@@ -57,7 +73,7 @@ const Header = () => {
             className={styles.nav__item}
             onMouseEnter={handleScheduleMouseEnter}
             onMouseLeave={handleScheduleMouseLeave}
-          >
+            >
             <div className={styles.link}>Расписание</div>
             {isScheduleHovered && (
               <div className={styles.dropdown}>
@@ -73,7 +89,7 @@ const Header = () => {
             className={`${styles.nav__item} ${isStudentHovered && styles.nav__item_active}`} 
             onMouseEnter={handleStudentMouseEnter} 
             onMouseLeave={handleStudentMouseLeave} 
-          > 
+            > 
             <div className={styles.link}>Студентам</div> 
             {isStudentHovered && ( 
               <div className={styles.dropdown}> 
@@ -126,6 +142,7 @@ const Header = () => {
         </ul> 
       </nav> 
     </header> 
+              // {/* </div>  */}
   ); 
 }
 

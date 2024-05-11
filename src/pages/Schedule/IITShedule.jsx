@@ -7,6 +7,7 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../../main";
 import api from "../../http";
 import PDFViewer from "../../components/PDFViewer";
+import Header from "../../components/Header/Header";
 
 const IITSchedule = () => {
   const { store } = useContext(Context);
@@ -50,12 +51,9 @@ const IITSchedule = () => {
 
   return (
     <>
-      {/*<Header />*/}
-
+      <Header />
+      <div className={styles.content}>        
       <div className={styles.headDiv}>
-        <Link to="/">
-          <img src={logo} alt="Result" />
-        </Link>
         <div className={styles.headText}>
           <h2 className={styles.Title}>
             Кафедра Интеллектуальных информационных технологий
@@ -67,7 +65,7 @@ const IITSchedule = () => {
           className={styles.button89}
           onClick={(e) => downloadSchedule(e)}
         >
-          Загрузить расписание кафедры .xlsx
+          Скачать расписание кафедры .xlsx
         </button>
         <button className={styles.button89} onClick={() => {setView(!view)}}>Предпросмотр расписания</button>
       </div>
@@ -76,20 +74,20 @@ const IITSchedule = () => {
         <div className={styles.drag}>
           {drag ? (
             <div
-              className={styles.dropArea}
-              onDragStart={(e) => dragStartHandler(e)}
-              onDragLeave={(e) => dragLeaveHandler(e)}
-              onDragOver={(e) => dragStartHandler(e)}
-              onDrop={(e) => onDropHandler(e)}
+            className={styles.dropArea}
+            onDragStart={(e) => dragStartHandler(e)}
+            onDragLeave={(e) => dragLeaveHandler(e)}
+            onDragOver={(e) => dragStartHandler(e)}
+            onDrop={(e) => onDropHandler(e)}
             >
               Отпустите файлы, чтобы загрузить их
             </div>
           ) : (
             <div
-              className={styles.area}
-              onDragStart={(e) => dragStartHandler(e)}
-              onDragLeave={(e) => dragLeaveHandler(e)}
-              onDragOver={(e) => dragStartHandler(e)}
+            className={styles.area}
+            onDragStart={(e) => dragStartHandler(e)}
+            onDragLeave={(e) => dragLeaveHandler(e)}
+            onDragOver={(e) => dragStartHandler(e)}
             >
               Перетащите файл расписания, чтобы загрузить его .xlsx
             </div>
@@ -104,6 +102,7 @@ const IITSchedule = () => {
       </div>
       
       {/*store.user.role === "ADMIN" ? <h1>admin</h1> : <h1>not admin</h1>*/}
+      </div>
     </>
   );
 };

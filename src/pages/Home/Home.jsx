@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../../main";
 import Header from "../../components/Header/Header";
 import ParticlesBg from "../../components/ParticlesBg";
+import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 
 const Home = () => {
@@ -89,6 +90,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+        <Footer/>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../http";
 import styles from "./Profile.module.css";
+import Header from "../components/Header/Header";
 
 const Profile = () => {
   const [user, setUser] = useState({});
@@ -13,9 +14,12 @@ const Profile = () => {
       setUser(response.data);
     })();
   }, []);
+  
 
   return (
     <>
+          <div className={styles.container}>
+          <Header />
       <div className={styles.contain}>
         <div className={styles.card}>
           <div className={styles.profile}>
@@ -27,7 +31,7 @@ const Profile = () => {
                   src={`http://localhost:8080/api/v1/users/${localStorage.getItem(
                     "username"
                   )}/getAvatar`}
-                />
+                  />
               </div>
             </div>
             {/*Текст возле профиля*/}
@@ -51,12 +55,13 @@ const Profile = () => {
             <button
               className={styles.edit_button}
               onClick={() => handleEditButton(post.id)}
-            >
+              >
               Редактировать профиль
             </button>
           </div>
         </div>
       </div>
+              </div>
     </>
   );
 };

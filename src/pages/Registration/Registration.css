@@ -143,5 +143,10 @@
   margin-bottom: 15px;
 }
 .form-input input {
+  color: black;
   margin-bottom: 20px;
+}
+
+.role label{
+  color: black;
 }

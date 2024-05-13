@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import PostService from "../../services/PostService";
 import styles from "./News.module.css";
 import { Context } from "../../main";
@@ -198,6 +199,7 @@ const News = () => {
           </div>
         }
       </div>
+        {/* <Footer/>  */}
     </>
   );
 };

@@ -34,6 +34,8 @@ const ScheduleFEIS = () => {
 
   return (
     <>
+    <div className={styles.back}>
+
           <Header />
     <div className={styles.container}>
       <div className={styles.headDiv}>
@@ -85,6 +87,7 @@ const ScheduleFEIS = () => {
           <></>
         )}
       </div>
+        </div>
         </div>
     </>
   );

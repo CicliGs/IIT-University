@@ -51,6 +51,7 @@ const IITSchedule = () => {
 
   return (
     <>
+    <div className={styles.back}>
       <Header />
       <div className={styles.content}>        
       <div className={styles.headDiv}>
@@ -64,7 +65,7 @@ const IITSchedule = () => {
         <button
           className={styles.button89}
           onClick={(e) => downloadSchedule(e)}
-        >
+          >
           Скачать расписание кафедры .xlsx
         </button>
         <button className={styles.button89} onClick={() => {setView(!view)}}>Предпросмотр расписания</button>
@@ -102,6 +103,7 @@ const IITSchedule = () => {
       </div>
       
       {/*store.user.role === "ADMIN" ? <h1>admin</h1> : <h1>not admin</h1>*/}
+      </div>
       </div>
     </>
   );

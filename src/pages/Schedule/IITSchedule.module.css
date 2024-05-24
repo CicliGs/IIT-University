@@ -117,3 +117,68 @@ button{
   background: var(--color);
   color: #fff;
 }
+
+/* IITSchedule.module.css */
+
+.back {
+  background-color: rgb(39, 39, 39);
+  color: white;
+}
+
+.tableContainer {
+  margin-top: 20px;
+  overflow-x: auto;
+  max-height: 80vh;
+  border: 1px solid #ddd;
+  background-color: rgb(39, 39, 39);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: rgb(39, 39, 39);
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  word-wrap: break-word;
+  background-color: rgb(39, 39, 39);
+  color: white;
+}
+
+.table th {
+  background-color: rgb(39, 39, 39);
+  top: 0;
+  z-index: 1;
+}
+
+.table th:first-child {
+  left: 0;
+  z-index: 2;
+  background-color: rgb(39, 39, 39);
+}
+
+.table td {
+  white-space: pre-wrap;
+}
+
+.table td:first-child {
+  left: 0;
+  background-color: rgb(39, 39, 39);
+}
+
+thead th[colspan] {
+  background-color: rgb(39, 39, 39);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.dayCell {
+  background-color: rgb(39, 39, 39);
+  text-align: center;
+  font-weight: bold;
+}

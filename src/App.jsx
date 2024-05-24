@@ -8,9 +8,9 @@ import News from "./pages/News/News"
 import EditPost from "./pages/News/EditPost"
 import IITSchedule from "./pages/Schedule/IITShedule"
 import ScheduleFEIS from "./pages/Schedule/ScheduleFEIS"
-import Labs from "./pages/Labs"
-import Materials from "./pages/Materials"
-import Exam from "./pages/Exam"
+import Labs from "./pages/Students/Labs/Labs"
+import Materials from "./pages/Students/Materials/Materials"
+import Exam from "./pages/Students/Exam/Exam"
 import Teachers from "./pages/Teachers"
 import UserRoute from "./utils/router/userRoute"
 import TeacherRoute from "./utils/router/teacherRoute"
@@ -19,6 +19,7 @@ import AdminRoute from "./utils/router/adminRoute"
 import Admin from "./pages/Admin"
 import Video from "./pages/Video"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Users from "./pages/Users/Users"
 
 export default function App() {
   const {store} = useContext(Context)
@@ -55,6 +56,7 @@ export default function App() {
           <Route element={<AdminRoute />}>
             <Route path='/register' element={<Registration />} />
             <Route path='/admin' element={<Admin />} />
+            <Route path='/admin/users' element={<Users />} />
           </Route>
 
           <Route path='/login' element={<Login />} />

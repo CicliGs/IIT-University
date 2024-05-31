@@ -126,9 +126,10 @@ button{
 }
 
 .tableContainer {
+  width: 100%;
   margin-top: 20px;
   overflow-x: auto;
-  max-height: 80vh;
+  max-height: 100ch;
   border: 1px solid #ddd;
   background-color: rgb(39, 39, 39);
 }
@@ -140,10 +141,12 @@ button{
   background-color: rgb(39, 39, 39);
 }
 
-.table th, .table td {
+.table th,
+.table td {
   border: 1px solid #ddd;
+  width: 150px;
   padding: 8px;
-  text-align: left;
+  text-align: center;
   word-wrap: break-word;
   background-color: rgb(39, 39, 39);
   color: white;
@@ -151,23 +154,22 @@ button{
 
 .table th {
   background-color: rgb(39, 39, 39);
+  /* position: sticky; */
   top: 0;
   z-index: 1;
 }
 
-.table th:first-child {
+.table th:first-child,
+.table td:first-child,
+.timeCell {
   left: 0;
-  z-index: 2;
+  /* position: sticky; */
   background-color: rgb(39, 39, 39);
+  z-index: 2;
 }
 
 .table td {
   white-space: pre-wrap;
-}
-
-.table td:first-child {
-  left: 0;
-  background-color: rgb(39, 39, 39);
 }
 
 thead th[colspan] {
@@ -181,4 +183,18 @@ thead th[colspan] {
   background-color: rgb(39, 39, 39);
   text-align: center;
   font-weight: bold;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.searchInput {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: black;
 }

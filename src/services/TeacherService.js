@@ -1,18 +1,23 @@
-
-import axios from "axios"
+import api from "../http"
 
 export default class TeacherService{
     static async get(){
-        const API_URL = 'http://localhost:8080/api/v1'
-        const api = axios.create({
-            withCredentials: true,
-            baseURL: API_URL
-        })
-        
-        api.interceptors.request.use((config) => {
-            config.headers.Authorization = `Bearer ${localStorage.getItem('access_token')}`
-            return config
-        })
-        return api.get('/teacher')
+        return api.get('../teacher')
+    }
+
+    static async getAllLabs(){
+        return api.get('../fileSystem/getLabWorks')
+    }
+
+    static async getAllMaterials(){
+        return api.get('../fileSystem/getAllMaterials')
+    }
+
+    static async getAllExamQuestions(){
+        return api.get('../fileSystem/getExamQuestions')
+    }
+
+    static async getDisciplines(){
+        return api.get('../fileSystem/getDisciplines')
     }
 }

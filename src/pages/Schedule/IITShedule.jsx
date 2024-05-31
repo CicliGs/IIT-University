@@ -11,6 +11,7 @@ const IITSchedule = () => {
   const [view, setView] = useState(false);
   const [schedule, setSchedule] = useState([]);
   const [error, setError] = useState(null);
+  const [teacherName, setTeacherName] = useState("");
 
   const downloadSchedule = async () => {
     const fileName = "http://localhost:8080/api/v1/schedule/pdf/iit"
@@ -26,7 +27,7 @@ const IITSchedule = () => {
 
   const loadSchedule = async () => {
     try {
-      const url = "/schedule.xlsx";
+      const url = "./schedule.xlsx";
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -86,22 +87,37 @@ const IITSchedule = () => {
 
   const renderTable = () => {
     if (!schedule.length) return null;
-
+  
     const daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
     let dayIndex = -1;
     let dayRowSpan = 0;
-
-    const processedRows = schedule.map((row, rowIndex) => {
+  
+    const filteredSchedule = schedule.filter((row, rowIndex) => {
+      if (rowIndex === 0) return true;
+      return teacherName
+        ? row.some(cell => cell.toString().toLowerCase().includes(teacherName.toLowerCase()))
+        : true;
+    });
+  
+    const transpose = (matrix) => {
+      return matrix.reduce((acc, row) => row.map((_, i) => [...(acc[i] || []), row[i]]), []);
+    };
+  
+    const transposeFilteredSchedule = transpose(filteredSchedule);
+    const nonEmptyColumns = transposeFilteredSchedule.filter(column => column.some(cell => cell !== ""));
+    const cleanedSchedule = transpose(nonEmptyColumns);
+  
+    const processedRows = cleanedSchedule.map((row, rowIndex) => {
       let isDayCell = false;
       if (daysOfWeek.includes(row[0])) {
         dayIndex++;
         dayRowSpan = 1;
-        while (schedule[rowIndex + 1 + dayRowSpan] && !daysOfWeek.includes(schedule[rowIndex + 1 + dayRowSpan][0])) {
+        while (cleanedSchedule[rowIndex + 1 + dayRowSpan] && !daysOfWeek.includes(cleanedSchedule[rowIndex + 1 + dayRowSpan][0])) {
           dayRowSpan++;
         }
         isDayCell = true;
       }
-
+  
       return (
         <tr key={rowIndex}>
           {row.map((cell, cellIndex) => {
@@ -116,6 +132,11 @@ const IITSchedule = () => {
               if (cell === "") {
                 return <td key={cellIndex} style={{ backgroundColor: "rgb(39, 39, 39)" }} />;
               }
+              // Здесь можно добавить логику для форматирования времени
+              // Например, вы можете добавить 15 минут к времени
+              // Например:
+              // const nextTime = addMinutes(cell, 15); // Функция, которая добавляет 15 минут к времени
+              // return <td key={cellIndex}>{nextTime}</td>;
               return <td key={cellIndex}>{cell}</td>;
             }
             return null;
@@ -123,17 +144,18 @@ const IITSchedule = () => {
         </tr>
       );
     });
-
+  
     const mergeEmptyCells = (rows) => {
-      // Merge empty cells vertically
       for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
         const row = rows[rowIndex];
+        if (!row) continue;
         for (let cellIndex = 0; cellIndex < row.props.children.length; cellIndex++) {
           const cell = row.props.children[cellIndex];
           if (cell && cell.props.children === "") {
             let rowSpan = 1;
             for (let i = rowIndex + 1; i < rows.length; i++) {
               const nextRow = rows[i];
+              if (!nextRow) continue;
               const nextCell = nextRow.props.children[cellIndex];
               if (nextCell && nextCell.props.children === "") {
                 rowSpan++;
@@ -152,38 +174,13 @@ const IITSchedule = () => {
           }
         }
       }
-      // Merge empty cells horizontally
-      for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
-        const row = rows[rowIndex];
-        for (let cellIndex = 0; cellIndex < row.props.children.length; cellIndex++) {
-          const cell = row.props.children[cellIndex];
-          if (cell && cell.props.children === "") {
-            let colSpan = 1;
-            for (let j = cellIndex + 1; j < row.props.children.length; j++) {
-              const nextCell = row.props.children[j];
-              if (nextCell && nextCell.props.children === "") {
-                colSpan++;
-              } else {
-                break;
-              }
-            }
-            if (colSpan > 1) {
-              row.props.children[cellIndex] = (
-                <td key={cellIndex} colSpan={colSpan} style={{ backgroundColor: "rgb(39, 39, 39)" }} />
-              );
-              for (let j = 1; j < colSpan; j++) {
-                row.props.children[cellIndex + j] = null;
-              }
-            }
-          }
-        }
-      }
       return rows;
     };
-
+  
     const mergeSubjectCells = (rows) => {
       for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
         const row = rows[rowIndex];
+        if (!row) continue;
         for (let cellIndex = 0; cellIndex < row.props.children.length; cellIndex++) {
           const cell = row.props.children[cellIndex];
           if (cell && typeof cell.props.children === "string") {
@@ -192,6 +189,7 @@ const IITSchedule = () => {
               let rowSpan = 1;
               for (let i = rowIndex + 1; i < rows.length; i++) {
                 const nextRow = rows[i];
+                if (!nextRow) continue;
                 const nextCell = nextRow.props.children[cellIndex];
                 if (nextCell && nextCell.props.children.split("\n")[0] === cellContent[0]) {
                   rowSpan++;
@@ -285,6 +283,18 @@ const IITSchedule = () => {
           ) : null}
 
           {error && <div className={styles.error}>Ошибка загрузки: {error}</div>}
+
+          {/* {view && (
+            <div className={styles.searchContainer}>
+              <input
+                type="text"
+                className={styles.searchInput}
+                placeholder="Введите фамилию преподавателя"
+                value={teacherName}
+                onChange={(e) => setTeacherName(e.target.value)}
+              />
+            </div>
+          )} */}
 
           {view && renderTable()}
         </div>

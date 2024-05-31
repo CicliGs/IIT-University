@@ -117,6 +117,7 @@ const Header = () => {
               <div className={styles.dropdown}>
                 <ul>
                   <li><Link to="/register" className={styles.dropdown__link}>Регистрация</Link></li>
+                  <li><Link to="/admin/users" className={styles.dropdown__link}>Пользователи</Link></li>
                 </ul>
               </div>
             )}

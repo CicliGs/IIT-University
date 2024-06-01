@@ -132,11 +132,6 @@ const IITSchedule = () => {
               if (cell === "") {
                 return <td key={cellIndex} style={{ backgroundColor: "rgb(39, 39, 39)" }} />;
               }
-              // Здесь можно добавить логику для форматирования времени
-              // Например, вы можете добавить 15 минут к времени
-              // Например:
-              // const nextTime = addMinutes(cell, 15); // Функция, которая добавляет 15 минут к времени
-              // return <td key={cellIndex}>{nextTime}</td>;
               return <td key={cellIndex}>{cell}</td>;
             }
             return null;
@@ -222,11 +217,11 @@ const IITSchedule = () => {
       <div className={styles.tableContainer}>
         <table className={styles.table}>
           <thead>
-            <tr>
+            {/* <tr>
               {schedule[0].map((header, index) => (
                 <th key={index}>{header}</th>
               ))}
-            </tr>
+            </tr> */}
           </thead>
           <tbody>
             {mergeEmptyCells(mergeSubjectCells(processedRows))}
@@ -283,7 +278,11 @@ const IITSchedule = () => {
           ) : null}
 
           {error && <div className={styles.error}>Ошибка загрузки: {error}</div>}
-
+          {view && (
+            <div className={styles.explanation}>
+              <p><span>*</span>в/н - верхняя неделя<br /><span>*</span>н/н - нижняя неделя</p>
+            </div>
+          )}
           {/* {view && (
             <div className={styles.searchContainer}>
               <input

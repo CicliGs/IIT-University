@@ -198,3 +198,18 @@ thead th[colspan] {
   border-radius: 5px;
   color: black;
 }
+
+.explanation{
+  font-size: 15px;
+  text-align: center;
+}
+
+.explanation span {
+  font-size: 25px;
+  color: white;
+}
+
+.explanation p {
+  font-size: 20px;
+  text-align: center;
+}
